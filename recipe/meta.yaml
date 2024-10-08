@@ -1,29 +1,29 @@
 {% set name = "backports.tarfile" %}
-{% set version = "1.0.0" %}
+{% set version = "1.2.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/backports.tarfile-{{ version }}.tar.gz
-  sha256: 2688f159c21afd56a07b75f01306f9f52c79aebcc5f4a117fb8fbb4445352c75
+  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/backports.tarfile-{{ version }}.tar.gz
+  url: https://github.com/jaraco/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 52bdbbde19d8f679c008ba92df49f84363fdb7913d93227c3ae49e3e49bef7e4
 
 build:
-  noarch: python
+  skip: True  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
-    - python >=3.8
-    - setuptools >=56
-    - setuptools-scm >=3.4.1
+    - python
+    - setuptools
+    - toml
     - pip
-    - backports
+    - wheel
   run:
-    - python >=3.8
-    - backports
+    - python
 
 test:
   imports:
@@ -36,8 +36,12 @@ test:
 about:
   home: https://github.com/jaraco/backports.tarfile
   summary: Backport of CPython tarfile module
+  # No description available
   license: MIT
   license_file: LICENSE
+  license_family: MIT
+  dev_url: https://github.com/jaraco/backports.tarfile
+  doc_url: https://github.com/jaraco/backports.tarfile
 
 extra:
   recipe-maintainers:
