@@ -6,7 +6,6 @@ package:
   version: {{ version }}
 
 source:
-  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/backports.tarfile-{{ version }}.tar.gz
   url: https://github.com/jaraco/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 52bdbbde19d8f679c008ba92df49f84363fdb7913d93227c3ae49e3e49bef7e4
 
